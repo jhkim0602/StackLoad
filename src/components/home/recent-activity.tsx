@@ -31,10 +31,10 @@ export function RecentActivity({ className = "" }: RecentActivityProps) {
     async function loadRecentActivity() {
       try {
         const [techsResponse, companiesResponse] = await Promise.all([
-          fetch('/api/techs'),
-          fetch('/api/companies')
+          fetch("/api/techs"),
+          fetch("/api/companies"),
         ]);
-        
+
         const techs = await techsResponse.json();
         const companies = await companiesResponse.json();
 
@@ -45,27 +45,28 @@ export function RecentActivity({ className = "" }: RecentActivityProps) {
             id: "1",
             type: "tech_added",
             title: "TypeScript 기술 정보 업데이트",
-            description: "타입이 있는 JavaScript - 최신 버전 정보 및 학습 리소스 추가",
+            description:
+              "타입이 있는 JavaScript - 최신 버전 정보 및 학습 리소스 추가",
             timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), // 2시간 전
             data: {
               slug: "typescript",
               category: "language",
-              logoUrl: "https://cdn.simpleicons.org/typescript"
-            }
+              logoUrl: "https://cdn.simpleicons.org/typescript",
+            },
           },
           {
-            id: "2", 
+            id: "2",
             type: "company_added",
             title: "새로운 기업 추가",
             description: "Initech - 금융 분야에서 NestJS, MySQL 등을 활용",
             timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(), // 4시간 전
             data: {
-              category: "finance"
-            }
+              category: "finance",
+            },
           },
           {
             id: "3",
-            type: "tech_updated", 
+            type: "tech_updated",
             title: "Next.js 버전 업데이트",
             description: "v15 버전 정보 및 새로운 기능 문서 업데이트",
             timestamp: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(), // 6시간 전
@@ -73,8 +74,8 @@ export function RecentActivity({ className = "" }: RecentActivityProps) {
               slug: "nextjs",
               category: "frontend",
               logoUrl: "https://cdn.simpleicons.org/nextdotjs",
-              changeType: "version"
-            }
+              changeType: "version",
+            },
           },
           {
             id: "4",
@@ -85,36 +86,38 @@ export function RecentActivity({ className = "" }: RecentActivityProps) {
             data: {
               slug: "react",
               category: "frontend",
-              logoUrl: "https://cdn.simpleicons.org/react"
-            }
+              logoUrl: "https://cdn.simpleicons.org/react",
+            },
           },
           {
             id: "5",
             type: "tech_added",
             title: "Kubernetes 학습 가이드 추가",
-            description: "컨테이너 오케스트레이션 - 실무 활용 예제 및 모범 사례",
+            description:
+              "컨테이너 오케스트레이션 - 실무 활용 예제 및 모범 사례",
             timestamp: new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString(), // 12시간 전
             data: {
               slug: "kubernetes",
               category: "devops",
-              logoUrl: "https://cdn.simpleicons.org/kubernetes"
-            }
+              logoUrl: "https://cdn.simpleicons.org/kubernetes",
+            },
           },
           {
             id: "6",
             type: "company_added",
             title: "Soylent 정보 업데이트",
-            description: "푸드테크 기업 - Django, Redis, ClickHouse 기술 스택 정보",
+            description:
+              "푸드테크 기업 - Django, Redis, ClickHouse 기술 스택 정보",
             timestamp: new Date(Date.now() - 18 * 60 * 60 * 1000).toISOString(), // 18시간 전
             data: {
-              category: "foodtech"
-            }
-          }
+              category: "foodtech",
+            },
+          },
         ];
 
         setActivities(mockActivities);
       } catch (error) {
-        console.error('Failed to load recent activity:', error);
+        console.error("Failed to load recent activity:", error);
       } finally {
         setLoading(false);
       }
@@ -185,7 +188,9 @@ export function RecentActivity({ className = "" }: RecentActivityProps) {
 
   if (loading) {
     return (
-      <div className={`bg-white/60 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg p-6 ${className}`}>
+      <div
+        className={`bg-white/60 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg p-6 ${className}`}
+      >
         <div className="flex items-center gap-2 mb-6">
           <div className="w-6 h-6 bg-gray-200 rounded-lg animate-pulse" />
           <div className="h-6 bg-gray-200 rounded animate-pulse w-32" />
@@ -207,7 +212,9 @@ export function RecentActivity({ className = "" }: RecentActivityProps) {
   }
 
   return (
-    <div className={`bg-white/60 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg p-6 hover:shadow-xl transition-all duration-300 ${className}`}>
+    <div
+      className={`bg-white/60 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg p-6 hover:shadow-xl transition-all duration-300 ${className}`}
+    >
       <div className="flex items-center gap-2 mb-6">
         <div className="w-6 h-6 bg-gradient-to-r from-green-500 to-cyan-500 rounded-lg flex items-center justify-center">
           <Clock className="w-4 h-4 text-white" />
@@ -223,7 +230,11 @@ export function RecentActivity({ className = "" }: RecentActivityProps) {
             className="group flex items-start gap-3 p-3 bg-white/40 hover:bg-white/60 rounded-xl border border-white/30 hover:border-white/50 transition-all duration-200"
           >
             {/* 활동 타입 아이콘 */}
-            <div className={`w-10 h-10 rounded-lg border flex items-center justify-center ${getActivityColor(activity.type)}`}>
+            <div
+              className={`w-10 h-10 rounded-lg border flex items-center justify-center ${getActivityColor(
+                activity.type
+              )}`}
+            >
               {getActivityIcon(activity.type)}
             </div>
 
@@ -246,7 +257,11 @@ export function RecentActivity({ className = "" }: RecentActivityProps) {
                 <h4 className="font-medium text-gray-800 truncate group-hover:text-blue-700 transition-colors">
                   {activity.title}
                 </h4>
-                <span className={`px-2 py-1 text-xs font-medium rounded-full border ${getActivityColor(activity.type)}`}>
+                <span
+                  className={`px-2 py-1 text-xs font-medium rounded-full border ${getActivityColor(
+                    activity.type
+                  )}`}
+                >
                   {getActivityTypeText(activity.type)}
                 </span>
               </div>
